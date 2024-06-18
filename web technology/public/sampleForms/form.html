@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Builder</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="../bundle/formHandle.js" defer></script>
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f3f4f6;
+    }
+
+    aside {
+      width: 20%;
+      background-color: rgba(0, 128, 128, 0.529);
+      padding: 1rem;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.427);
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 1rem;
+      display: flex;
+      flex-direction: row;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      background-color: rgba(113, 161, 161, 0.529);
+    }
+
+    .form-container {
+      width: 30%;
+    }
+
+    .pdf-viewer {
+      flex-grow: 1;
+      margin-left: 1rem;
+      background-color: #e5e7eb;
+      border-radius: 0.375rem;
+      padding: 1rem;
+      /* Hide by default */
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      aside {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      main {
+        flex-direction: column;
+      }
+
+      .form-container,
+      .pdf-viewer {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <aside>
+    <nav>
+      <ul>
+        <li>
+          <a href="#profile" class="block text-white py-2" onclick="showSection('profile')"><span
+              class="bg-teal-500 text-white px-2 py-1 rounded">: :</span>
+            Profile</a>
+        </li>
+        <li>
+          <a href="#education" class="block text-white py-2" onclick="showSection('education')"><span
+              class="bg-teal-500 text-white px-2 py-1 rounded">: :</span>
+            Education</a>
+        </li>
+        <li>
+          <a href="#work" class="block text-white py-2" onclick="showSection('work')"><span
+              class="bg-teal-500 text-white px-2 py-1 rounded">: :</span>
+            Work</a>
+        </li>
+        <li>
+          <a href="#skills" class="block text-white py-2" onclick="showSection('skills')"><span
+              class="bg-teal-500 text-white px-2 py-1 rounded">: :</span>
+            Skills</a>
+        </li>
+        <li>
+          <a href="#projects" class="block text-white py-2" onclick="showSection('projects')"><span
+              class="bg-teal-500 text-white px-2 py-1 rounded">: :</span>
+            Projects</a>
+        </li>
+        <li>
+          <a href="#awards" class="block text-white py-2" onclick="showSection('awards')"><span
+              class="bg-teal-500 text-white px-2 py-1 rounded">: :</span>
+            Awards</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="mt-8">
+      <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+        Make
+      </button>
+    </div>
+  </aside>
+
+
+
+
+  <main>
+    <div class="form-container">
+
+
+      <section id="profile" class="section active">
+        <header class="mb-8">
+          <h1 class="text-3xl font-bold">Personal Info</h1>
+        </header>
+        <form id="profile-form" class="space-y-4">
+          <fieldset class="p-4 bg-white rounded shadow-sm">
+            <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="full-name">Full Name</label>
+              <input name="fullName"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="full-name" type="text" placeholder="John Doe" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="email">Email</label>
+              <input name="email"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email" type="email" placeholder="john.doe@example.com" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="phone">Phone</label>
+              <input name="phone"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="phone" type="tel" placeholder="(123) 456-7890" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="linkedin">LinkedIn</label>
+              <input name="linkedin"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="linkedin" type="url" placeholder="linkedin.com/in/johndoe" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="summary">Summary</label>
+              <textarea name="summary"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="summary" placeholder="What about you?" rows="4"></textarea>
+            </div>
+            <div class="form-buttons">
+              <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                Save and Continue
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </section>
+
+
+
+      <section id="education" class="section">
+        <header class="mb-8">
+          <h1 class="text-3xl font-bold">Education</h1>
+        </header>
+        <form id="education-form" class="space-y-4">
+          <div id="education-container">
+            <fieldset class="p-4 bg-white rounded shadow-sm education-entry">
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="school-name">School Name</label>
+                <input name="schoolName[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="school-name" type="text" placeholder="Harvard University" />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="degree">Degree</label>
+                <input name="degree[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="degree" type="text" placeholder="Bachelor of Science" />
+              </div>
+              <div class="mb-4 flex flex-wrap">
+                <div class="w-1/2 pr-2">
+                  <label class="block text-gray-700 font-bold mb-2" for="start-date">Start Date</label>
+                  <input name="educationStartDate[]"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="start-date" type="date" />
+                </div>
+                <div class="w-1/2 pl-2">
+                  <label class="block text-gray-700 font-bold mb-2" for="end-date">End Date</label>
+                  <input name="educationEndDate[]"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="end-date" type="date" />
+                </div>
+              </div>
+              <div class="form-buttons">
+                <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                  Save and Continue
+                </button>
+              </div>
+            </fieldset>
+          </div>
+          <button type="button"
+            class="text-blue-300 hover:text-blue-100 bg-green-700 hover:bg-green-700 px-4 py-2 rounded"
+            onclick="addEducation()">
+            + Add More
+          </button>
+
+          <button type="button"
+            class="text-white hover:text-red-100 float-right bg-red-500 hover:bg-red-700 px-4 py-2 rounded"
+            onclick="deleteEducation(this)">
+            - Delete
+          </button>
+        </form>
+      </section>
+
+
+
+      <section id="work" class="section">
+        <header class="mb-8">
+          <h1 class="text-3xl font-bold">Work</h1>
+        </header>
+        <form id="work-form" class="space-y-4">
+          <div id="work-experience-container">
+            <fieldset class="p-4 bg-white rounded shadow-sm work-experience">
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="company-name">Company Name</label>
+                <input name="company[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="company-name" type="text" placeholder="Google" />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="position">Position</label>
+                <input name="jobTitle[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="position" type="text" placeholder="Software Engineer" />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="job-description">Job Description</label>
+                <textarea name="jobDescription[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="job-description" placeholder="Describe your job responsibilities here..."></textarea>
+
+                <div class="mb-4 flex flex-wrap">
+                  <div class="w-1/2 pr-2">
+                    <label class="block text-gray-700 font-bold mb-2" for="start-date">Start Date</label>
+                    <input name="workStartDate[]"
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="start-date" type="date" />
+                  </div>
+                  <div class="w-1/2 pl-2">
+                    <label class="block text-gray-700 font-bold mb-2" for="end-date">End Date</label>
+                    <input name="workEndDate[]"
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="end-date" type="date" />
+                  </div>
+                </div>
+                <div class="form-buttons">
+                  <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                    Save and Continue
+                  </button>
+                </div>
+            </fieldset>
+          </div>
+          <button type="button"
+            class="text-blue-300 hover:text-blue-100 bg-green-700 hover:bg-green-700 px-4 py-2 rounded"
+            onclick="addWorkExperience()">
+            + Add More
+          </button>
+          <button type="button"
+            class="text-white hover:text-red-100 float-right bg-red-500 hover:bg-red-700 px-4 py-2 rounded"
+            onclick="deleteWorkExperience()">
+            - Delete
+          </button>
+        </form>
+      </section>
+
+
+
+      <section id="skills" class="section">
+        <header class="mb-8">
+          <h1 class="text-3xl font-bold">Skills</h1>
+        </header>
+        <form id="skills-form" class="space-y-4">
+          <div id="skills-container">
+            <fieldset class="p-4 bg-white rounded shadow-sm skills-entry">
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="skill-name">Skill</label>
+                <input name="skillName[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="skill-name" type="text" placeholder="JavaScript" />
+                <div class="mb-4">
+                  <label class="block text-gray-700 font-bold mb-2" for="skill-level">Level</label>
+                  <select name="skillLevel[]"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="skill-level">
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                    <option value="Expert">Expert</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-buttons">
+                <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                  Save and Continue
+                </button>
+              </div>
+            </fieldset>
+          </div>
+          <button type="button"
+            class="text-blue-300 hover:text-blue-100 bg-green-700 hover:bg-green-700 px-4 py-2 rounded"
+            onclick="addSkill()">
+            + Add More
+          </button>
+          <button type="button"
+            class="text-white hover:text-red-100 float-right bg-red-500 hover:bg-red-700 px-4 py-2 rounded"
+            onclick="deleteSkill()">
+            - Delete
+          </button>
+        </form>
+      </section>
+
+
+
+      <section id="projects" class="section">
+        <header class="mb-8">
+          <h1 class="text-3xl font-bold">Projects</h1>
+        </header>
+        <form id="projects-form" class="space-y-4">
+          <div id="projects-container">
+            <fieldset class="p-4 bg-white rounded shadow-sm projects-entry">
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="project-name">Project Name</label>
+                <input name="projectName[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="project-name" type="text" placeholder="My Awesome Project" />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="project-description">Description</label>
+                <textarea name="projectDescription[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="project-description" rows="3" placeholder="Describe the project"></textarea>
+              </div>
+              <div class="form-buttons">
+                <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                  Save and Continue
+                </button>
+              </div>
+            </fieldset>
+          </div>
+          <button type="button"
+            class="text-blue-300 hover:text-blue-100 bg-green-700 hover:bg-green-700 px-4 py-2 rounded"
+            onclick="addProject()">
+            + Add More
+          </button>
+          <button type="button"
+            class="text-white hover:text-red-100 float-right bg-red-500 hover:bg-red-700 px-4 py-2 rounded"
+            onclick="deleteProject()">
+            - Delete
+          </button>
+        </form>
+      </section>
+
+
+
+
+      <section id="awards" class="section">
+        <header class="mb-8">
+          <h1 class="text-3xl font-bold">Awards</h1>
+        </header>
+        <form id="awards-form" class="space-y-4">
+          <div id="awards-container">
+            <fieldset class="p-4 bg-white rounded shadow-sm awards-entry">
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="award-name">Award Name</label>
+                <input name="awardName[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="award-name" type="text" placeholder="Best Innovator Award" />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="award-date">Date</label>
+                <input name="awardDate[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="award-date" type="date" />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="award-description">Description</label>
+                <textarea name="awardDescription[]"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="award-description" rows="3" placeholder="Describe the award"></textarea>
+              </div>
+              <div class="form-buttons">
+                <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                  Save and Continue
+                </button>
+              </div>
+            </fieldset>
+          </div>
+          <button type="button"
+            class="text-blue-300 hover:text-blue-100 bg-green-700 hover:bg-green-700 px-4 py-2 rounded"
+            onclick="addAward()">
+            + Add More
+          </button>
+          <button type="button"
+            class="text-white hover:text-red-100 float-right bg-red-500 hover:bg-red-700 px-4 py-2 rounded"
+            onclick="deleteAward()">
+            - Delete
+          </button>
+        </form>
+      </section>
+    </div>
+
+    
+    <!-- pdf viewer -->
+
+
+    <!-- <div class="pdf-viewer bg-white">
+       
+        <div class="w-full h-full flex justify-center items-center bg-white">
+          <div class="bg-gray-200 rounded-lg shadow-lg">
+            <div class="overflow-hidden rounded-t-lg">
+              <canvas
+                class="w-full h-auto bg-white"
+                style="max-width: 1012px; max-height: 1306px"
+                width="1012"
+                height="1306"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+      </div> -->
+  </main>
+</body>
+
+</html>

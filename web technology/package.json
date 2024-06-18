@@ -1,0 +1,28 @@
+{
+  "name": "web-technology",
+  "version": "1.0.0",
+  "description": "Resume Maker to make a professional resumes for the candidates that helps candidates in job search",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./styles.css -o ./output.css --watch"
+  },
+  "keywords": [
+    "whiteboxlearningResumeMaker",
+    "UI",
+    "QA",
+    "ML",
+    "Resume",
+    "FreeResumeMaker",
+    "openresume"
+  ],
+  "author": "Whitebox Learning",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.3"
+  }
+}
