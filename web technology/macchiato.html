@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic JSON Form Generator</title>
+    <!-- <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    /> -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      body {
+        padding-top: 56px;
+        /* background-color: #f8f9fa; */
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: #fff; 
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1030;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .sidebar {
+        position: fixed;
+        top: 56px;
+        bottom: 0;
+        left: 0;
+        z-index: 1030;
+        width: 30%;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #f8f9fa;
+        box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+      }
+      .main-content {
+        margin-left: 30%;
+        padding: 20px;
+        overflow-y: auto;
+      }
+      .form-section {
+        display: none;
+        width: 100%;
+      }
+      .nested-section {
+        margin-bottom: 10px;
+      }
+      .form-section.active {
+        display: block;
+      }
+      .remove-btn {
+        margin-top: 10px;
+      }
+      .nav-link {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 100%;
+          padding: 10px;
+        }
+        .main-content {
+          margin-left: 0;
+        }
+        .form-section {
+          width: 100%;
+        }
+      }
+    </style></head
+  >>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a class="navbar-brand" href="#">Form Generator</a>
+    </nav>
+
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div
+        class="nav flex-column nav-pills"
+        id="v-pills-tab"
+        role="tablist"
+        aria-orientation="vertical"
+      >
+        <a
+          class="nav-link active"
+          data-toggle="pill"
+          href="#basics"
+          role="tab"
+          onclick="showSection('basics')"
+          >Basics</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#work"
+          role="tab"
+          onclick="showSection('work')"
+          >Work</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#volunteer"
+          role="tab"
+          onclick="showSection('volunteer')"
+          >Volunteer</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#education"
+          role="tab"
+          onclick="showSection('education')"
+          >Education</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#awards"
+          role="tab"
+          onclick="showSection('awards')"
+          >Awards</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#certificates"
+          role="tab"
+          onclick="showSection('certificates')"
+          >Certificates</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#publications"
+          role="tab"
+          onclick="showSection('publications')"
+          >Publications</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#skills"
+          role="tab"
+          onclick="showSection('skills')"
+          >Skills</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#languages"
+          role="tab"
+          onclick="showSection('languages')"
+          >Languages</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#interests"
+          role="tab"
+          onclick="showSection('interests')"
+          >Interests</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#references"
+          role="tab"
+          onclick="showSection('references')"
+          >References</a
+        >
+        <a
+          class="nav-link"
+          data-toggle="pill"
+          href="#projects"
+          role="tab"
+          onclick="showSection('projects')"
+          >Projects</a
+        >
+      </div>
+    </nav>
+
+    <main class="col-12 col-md-4 col-lg-3 px-4 main-content">
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <form id="jsonForm" class="mt-4">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div id="basics" class="form-section tab-pane fade show active">
+              <!-- Basics Form Section -->
+              <!-- Form fields are dynamically generated using JavaScript -->
+              <h3>Basics</h3>
+              <div class="form-group">
+                <label for="basics.name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="basics.name"
+                  id="basics.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="basics.label">Label</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="basics.label"
+                  id="basics.label"
+                />
+              </div>
+              <div class="form-group">
+                <label for="basics.email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="basics.email"
+                  id="basics.email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="basics.phone">Phone</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  name="basics.phone"
+                  id="basics.phone"
+                />
+              </div>
+              <div class="form-group">
+                <label for="basics.url">URL</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  name="basics.url"
+                  id="basics.url"
+                />
+              </div>
+              <div class="form-group">
+                <label for="basics.summary">Summary</label>
+                <textarea
+                  class="form-control"
+                  name="basics.summary"
+                  id="basics.summary"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="basics.location.address">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="basics.location.address"
+                  id="basics.location.address"
+                />
+              </div>
+              <div class="form-group">
+                <label for="basics.location.postalCode">Postal Code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="basics.location.postalCode"
+                  id="basics.location.postalCode"
+                />
+              </div>
+              <div class="form-group">
+                <label for="basics.location.city">City</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="basics.location.city"
+                  id="basics.location.city"
+                />
+              </div>
+              <div class="form-group">
+                <label for="basics.location.countryCode">Country Code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="basics.location.countryCode"
+                  id="basics.location.countryCode"
+                />
+              </div>
+              <div class="form-group">
+                <label for="basics.location.region">Region</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="basics.location.region"
+                  id="basics.location.region"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Work Section -->
+          <div id="work" class="form-section tab-pane fade">
+            <h3>Work</h3>
+            <div id="work-container">
+              <div class="form-group">
+                <label for="work.name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="work.name"
+                  id="work.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="work.position">Position</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="work.position"
+                  id="work.position"
+                />
+              </div>
+              <div class="form-group">
+                <label for="work.url">URL</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="work.url"
+                  id="work.url"
+                />
+              </div>
+              <div class="form-group">
+                <label for="work.startDate">Start Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="work.startDate"
+                  id="work.startDate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="work.endDate">End Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="work.endDate"
+                  id="work.endDate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="work.summary">Summary</label>
+                <textarea
+                  class="form-control"
+                  name="work.summary"
+                  id="work.summary"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="work.highlights">Highlights</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="work.highlights[0]"
+                  id="work.highlights"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('work')"
+            >
+              Add Work
+            </button>
+          </div>
+
+          <!-- volunteer  -->
+          <div id="volunteer" class="form-section tab-pane fade">
+            <h3>Volunteer</h3>
+            <div id="volunteer-container">
+              <div class="form-group">
+                <label for="volunteer.organization">Organization</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="volunteer.organization"
+                  id="volunteer.organization"
+                />
+              </div>
+              <div class="form-group">
+                <label for="volunteer.position">Position</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="volunteer.position"
+                  id="volunteer.position"
+                />
+              </div>
+              <div class="form-group">
+                <label for="volunteer.url">URL</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="volunteer.url"
+                  id="volunteer.url"
+                />
+              </div>
+              <div class="form-group">
+                <label for="volunteer.startDate">Start Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="volunteer.startDate"
+                  id="volunteer.startDate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="volunteer.endDate">End Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="volunteer.endDate"
+                  id="volunteer.endDate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="volunteer.summary">Summary</label>
+                <textarea
+                  class="form-control"
+                  name="volunteer.summary"
+                  id="volunteer.summary"
+                ></textarea>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('volunteer')"
+            >
+              Add Volunteer
+            </button>
+          </div>
+
+          <!-- education -->
+          <div id="education" class="form-section tab-pane fade">
+            <h3>Education</h3>
+            <div id="education-container">
+              <div class="form-group">
+                <label for="education.institution">Institution</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="education.institution"
+                  id="education.institution"
+                />
+              </div>
+              <div class="form-group">
+                <label for="education.url">URL</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="education.url"
+                  id="education.url"
+                />
+              </div>
+              <div class="form-group">
+                <label for="education.area">Area of Study</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="education.area"
+                  id="education.area"
+                />
+              </div>
+              <div class="form-group">
+                <label for="education.studyType">Study Type</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="education.studyType"
+                  id="education.studyType"
+                />
+              </div>
+              <div class="form-group">
+                <label for="education.startDate">Start Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="education.startDate"
+                  id="education.startDate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="education.endDate">End Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="education.endDate"
+                  id="education.endDate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="education.score">Score</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="education.score"
+                  id="education.score"
+                />
+              </div>
+              <div class="form-group">
+                <label for="education.courses">Courses</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="education.courses[0]"
+                  id="education.courses"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('education')"
+            >
+              Add Education
+            </button>
+          </div>
+
+          <!-- awards -->
+          <div id="awards" class="form-section tab-pane fade">
+            <h3>Awards</h3>
+            <div id="awards-container">
+              <div class="form-group">
+                <label for="awards.title">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="awards.title"
+                  id="awards.title"
+                />
+              </div>
+              <div class="form-group">
+                <label for="awards.date">Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="awards.date"
+                  id="awards.date"
+                />
+              </div>
+              <div class="form-group">
+                <label for="awards.awarder">Awarder</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="awards.awarder"
+                  id="awards.awarder"
+                />
+              </div>
+              <div class="form-group">
+                <label for="awards.summary">Summary</label>
+                <textarea
+                  class="form-control"
+                  name="awards.summary"
+                  id="awards.summary"
+                ></textarea>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('awards')"
+            >
+              Add Award
+            </button>
+          </div>
+
+          <!-- certifications -->
+          <div id="certificates" class="form-section tab-pane fade">
+            <h3>Certificates</h3>
+            <div id="certificates-container">
+              <div class="form-group">
+                <label for="certificates.name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="certificates.name"
+                  id="certificates.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="certificates.date">Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="certificates.date"
+                  id="certificates.date"
+                />
+              </div>
+              <div class="form-group">
+                <label for="certificates.issuer">Issuer</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="certificates.issuer"
+                  id="certificates.issuer"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('certificates')"
+            >
+              Add Certificate
+            </button>
+          </div>
+
+          <!-- Publications -->
+          <div id="publications" class="form-section tab-pane fade">
+            <h3>Publications</h3>
+            <div id="publications-container">
+              <div class="form-group">
+                <label for="publications.name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="publications.name"
+                  id="publications.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="publications.publisher">Publisher</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="publications.publisher"
+                  id="publications.publisher"
+                />
+              </div>
+              <div class="form-group">
+                <label for="publications.releaseDate">Release Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="publications.releaseDate"
+                  id="publications.releaseDate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="publications.url">URL</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="publications.url"
+                  id="publications.url"
+                />
+              </div>
+              <div class="form-group">
+                <label for="publications.summary">Summary</label>
+                <textarea
+                  class="form-control"
+                  name="publications.summary"
+                  id="publications.summary"
+                ></textarea>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('publications')"
+            >
+              Add Publications
+            </button>
+          </div>
+
+          <!-- Skills -->
+
+          <div id="skills" class="form-section tab-pane fade">
+            <h3>Skills</h3>
+            <div id="skills-container">
+              <div class="form-group">
+                <label for="skills.name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="skills.name"
+                  id="skills.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="skills.level">Level</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="skills.level"
+                  id="skills.level"
+                />
+              </div>
+              <div class="form-group">
+                <label for="skills.keywords">Keywords</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="skills.keywords[0]"
+                  id="skills.keywords"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('skills')"
+            >
+              Add Skill
+            </button>
+          </div>
+
+          <!-- language -->
+          <div id="languages" class="form-section tab-pane fade">
+            <h3>Languages</h3>
+            <div id="languages-container">
+              <div class="form-group">
+                <label for="languages.language">Language</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="languages.language"
+                  id="languages.language"
+                />
+              </div>
+              <div class="form-group">
+                <label for="languages.fluency">Fluency</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="languages.fluency"
+                  id="languages.fluency"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('languages')"
+            >
+              Add Language
+            </button>
+          </div>
+          <!-- intrests -->
+          <div id="interests" class="form-section tab-pane fade">
+            <h3>Interests</h3>
+            <div id="interests-container">
+              <div class="form-group">
+                <label for="interests.name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="interests.name"
+                  id="interests.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="interests.keywords">Keywords</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="interests.keywords[0]"
+                  id="interests.keywords"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('interests')"
+            >
+              Add Interest
+            </button>
+          </div>
+
+          <!-- references -->
+
+          <div id="references" class="form-section tab-pane fade">
+            <h3>References</h3>
+            <div id="references-container">
+              <div class="form-group">
+                <label for="references.name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="references.name"
+                  id="references.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="references.reference">Reference</label>
+                <textarea
+                  class="form-control"
+                  name="references.reference"
+                  id="references.reference"
+                ></textarea>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('references')"
+            >
+              Add Reference
+            </button>
+          </div>
+
+          <!-- projects -->
+          <div id="projects" class="form-section tab-pane fade">
+            <h3>Projects</h3>
+            <div id="projects-container">
+              <div class="form-group">
+                <label for="projects.name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="projects.name"
+                  id="projects.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="projects.description">Description</label>
+                <textarea
+                  class="form-control"
+                  name="projects.description"
+                  id="projects.description"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="projects.startDate">Start Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="projects.startDate"
+                  id="projects.startDate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="projects.endDate">End Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="projects.endDate"
+                  id="projects.endDate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="projects.url">URL</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="projects.url"
+                  id="projects.url"
+                />
+              </div>
+              <div class="form-group">
+                <label for="projects.highlights">Highlights</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="projects.highlights[0]"
+                  id="projects.highlights"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addSection('projects')"
+            >
+              Add Project
+            </button>
+          </div><br>
+          <div id="flex" class="row">
+            <div class="col-md-6 mb-2">
+              <button type="button" class="btn btn-primary d-block w-100" onclick="generatePDF()">
+                 PDF
+              </button>
+            </div>
+            <div class="col-md-6 mb-2">
+              <button type="button" class="btn btn-success d-block w-100" onclick="generateJSON()">
+                 JSON
+              </button>
+            </div>
+          </div>
+          
+        </form>
+
+        <pre id="jsonResult" class="mt-4"></pre>
+      </main>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script>
+        const data = {
+          basics: {
+            name: "",
+            label: "",
+            email: "",
+            phone: "",
+            url: "",
+            summary: "",
+            location: {
+              address: "",
+              postalCode: "",
+              city: "",
+              countryCode: "",
+              region: "",
+            },
+            profiles: [
+              {
+                network: "",
+                username: "",
+                url: "",
+              },
+            ],
+          },
+          work: [
+            {
+              name: "",
+              position: "",
+              url: "",
+              startDate: "",
+              endDate: "",
+              summary: "",
+              highlights: [""],
+            },
+          ],
+          volunteer: [
+            {
+              organization: "",
+              position: "",
+              url: "",
+              startDate: "",
+              endDate: "",
+              summary: "",
+            },
+          ],
+          education: [
+            {
+              institution: "",
+              url: "",
+              area: "",
+              studyType: "",
+              startDate: "",
+              endDate: "",
+              score: "",
+              courses: [],
+            },
+          ],
+          awards: [
+            {
+              title: "",
+              date: "",
+              awarder: "",
+              summary: "",
+            },
+          ],
+          certificates: [
+            {
+              name: "",
+              date: "",
+              issuer: "",
+            },
+          ],
+          publications: [
+            {
+              name: "",
+              publisher: "",
+              releaseDate: "",
+              url: "",
+              summary: "",
+            },
+          ],
+          skills: [
+            {
+              name: "",
+              level: "",
+              keywords: [],
+            },
+          ],
+          languages: [
+            {
+              language: "",
+              fluency: "",
+            },
+          ],
+          interests: [
+            {
+              name: "",
+              keywords: [],
+            },
+          ],
+          references: [
+            {
+              name: "",
+              reference: "",
+            },
+          ],
+          projects: [
+            {
+              name: "",
+              description: "",
+              keywords: [],
+              url: "",
+              roles: [],
+              startDate: "",
+              endDate: "",
+              entity: "",
+              type: "",
+            },
+          ],
+        };
+
+        // Function to show the selected section and hide others
+        function showSection(sectionId) {
+          // Hide all sections
+          const sections = document.querySelectorAll(".form-section");
+          sections.forEach((section) => {
+            section.classList.remove("active");
+          });
+
+          // Show the selected section
+          const selectedSection = document.getElementById(sectionId);
+          selectedSection.classList.add("active");
+        }
+
+        // Function to add a new form section dynamically
+        function addSection(sectionId) {
+          const container = document.getElementById(`${sectionId}-container`);
+          const sectionName =
+            sectionId.charAt(0).toUpperCase() + sectionId.slice(1); // Capitalize first letter
+
+          // Create a new form group with inputs based on JSON structure
+          const formData = data[sectionId][0]; // Assuming initial data structure for simplicity
+          const newForm = document.createElement("div");
+          newForm.className = "nested-section";
+          Object.keys(formData).forEach((key) => {
+            const label = document.createElement("label");
+            label.textContent = `${sectionName} ${
+              key.charAt(0).toUpperCase() + key.slice(1)
+            }`;
+            const input = document.createElement("input");
+            input.className = "form-control";
+            input.name = `${sectionId}[0].${key}`;
+            input.id = `${sectionId}.${key}`;
+            input.type = "text"; // Adjust input type based on the data structure
+            newForm.appendChild(label);
+            newForm.appendChild(input);
+          });
+
+          // Add remove button for added sections
+          const removeButton = document.createElement("button");
+          removeButton.type = "button";
+          removeButton.className = "btn btn-danger remove-btn";
+          removeButton.textContent = "Remove";
+          removeButton.onclick = function () {
+            container.removeChild(newForm); // Remove current section on button click
+          };
+          newForm.appendChild(removeButton);
+
+          // Append new form section to the container
+          container.appendChild(newForm);
+        }
+
+        // Function to generate JSON based on form data
+        function generateJSON() {
+          const form = document.getElementById("jsonForm");
+          const formData = new FormData(form);
+          const result = {};
+
+          formData.forEach((value, key) => {
+            const keys = key.split(".");
+            const topLevelKey = keys.shift(); // Get the top-level key (e.g., 'basics', 'work', etc.)
+            if (!result[topLevelKey]) {
+              result[topLevelKey] = {};
+            }
+            let currentLevel = result[topLevelKey];
+            while (keys.length > 1) {
+              const currentKey = keys.shift();
+              if (!currentLevel[currentKey]) {
+                currentLevel[currentKey] = {};
+              }
+              currentLevel = currentLevel[currentKey];
+            }
+            currentLevel[keys[0]] = value;
+          });
+
+          // Display JSON in the pre tag
+          const jsonResult = document.getElementById("jsonResult");
+          jsonResult.textContent = JSON.stringify(result, null, 2);
+
+          // Log JSON to console
+          console.log(result);
+        }
+        // Example function to generate PDF
+        function generatePDF() {
+          const jsonResult = document.getElementById("jsonResult").textContent;
+          const doc = new jsPDF();
+          doc.text(jsonResult, 10, 10);
+          doc.save("generated.json.pdf");
+        }
+
+        // Event listener for form submission (optional)
+        document
+          .getElementById("jsonForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent actual form submission
+            generateJSON(); // Generate JSON on form submit
+          });
+      </script>
+    </main>
+  </body>
+</html>
