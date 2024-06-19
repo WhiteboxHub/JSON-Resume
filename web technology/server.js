@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/forms", (req, res) => {
-  res.sendFile(__dirname + "/public/sampleForms/macchiato.html");
+  res.sendFile(__dirname + "/public/forms/macchiato.html");
 });
 
 // // Define a route to handle form submissions
