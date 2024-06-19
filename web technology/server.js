@@ -23,14 +23,14 @@ app.get("/forms", (req, res) => {
   res.sendFile(__dirname + "/public/sampleForms/macchiato.html");
 });
 
-// Define a route to handle form submissions
-app.post("/sampleForms/submit", (req, res) => {
-  const formData = req.body; // Submitted form data
-  const resumeHTML = collectFormData(formData); // Generate resume HTML
+// // Define a route to handle form submissions
+// app.post("/sampleForms/submit", (req, res) => {
+//   const formData = req.body; // Submitted form data
+//   const resumeHTML = collectFormData(formData); // Generate resume HTML
 
-  // Send the generated resume HTML as the response
-  res.send(resumeHTML);
-});
+//   // Send the generated resume HTML as the response
+//   res.send(resumeHTML);
+// });
 
 // Start the server
 app.listen(port, () => {
