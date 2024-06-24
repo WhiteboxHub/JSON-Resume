@@ -258,29 +258,6 @@ app.get("/generate-pdf", async (req, res) => {
       return;
     }
 
-    // Render the resume using the theme
-    const resumeHTML = theme.render(userData);
-
-    // Create a new PDF document
-    const pdfDoc = await PDFDocument.create();
-    const page = pdfDoc.addPage();
-
-    // Add the resume HTML as text content (simple implementation, you may need to adjust for complex layouts)
-    page.drawText(resumeHTML, {
-      x: 50,
-      y: page.getHeight() - 50,
-      size: 12,
-    });
-
-    // Serialize the PDFDocument to bytes (a Uint8Array)
-    const pdfBytes = await pdfDoc.save();
-
-    // Set headers and send PDF
-    res.set({
-      "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename=resume.pdf",
-    });
-    res.send(Buffer.from(pdfBytes));
   });
 });
 

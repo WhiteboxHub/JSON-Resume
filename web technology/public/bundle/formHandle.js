@@ -646,18 +646,18 @@ function submitJson() {
   });
 
   const jsonString = JSON.stringify(jsonObject, null, 2);
- // console.log(jsonString);
+  // console.log(jsonString);
   // Send jsonString to server or do something else with it
   // Display the JSON string in the PDF previewer
   const jsonPreviewDiv = document.getElementById("json-preview");
   jsonPreviewDiv.textContent = jsonString;
-  console.log(jsonString)
+  console.log(jsonString);
   fetch("/submit-form", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body:jsonString,
+    body: jsonString,
   })
     .then((response) => {
       // Check if the response is JSON
@@ -674,5 +674,4 @@ function submitJson() {
     .catch((error) => {
       console.error("Error:", error);
     });
-  
 }
